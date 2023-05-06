@@ -1,0 +1,40 @@
+1) Вывести товары цена которых равна 1999.
+models.Product.objects.filter(price = 1999)
+<QuerySet [<Product: Платье H&M>, <Product: Футболка Levi's>]>
+
+2) Вывести все товары из категории "Электроника"
+models.Product.objects.filter(category__name='Электроника')
+<QuerySet [<Product: Телефон Samsung Galaxy A52>, <Product: Ноутбук Acer Aspire 5>]>
+
+3) Получить все товары, у которых нет заказов:
+models.Product.objects.filter(order=None)
+<QuerySet [<Product: Ноутбук Acer Aspire 5>, <Product: Кеды Vans Old Skool>, <Product: Платье H&M>]>
+
+4) Получить все товары, которые были заказаны клиентом с именем "Данил" в Апреле 2023 года:
+models.Product.objects.filter(order__client__name='danil', order__date__year=2023, order__date__month=4).distinct()
+<QuerySet [<Product: Телефон Samsung Galaxy A52>]>
+
+5) Получить всех клиентов, у которых есть заказы на товары в категории "Электроника", но нет заказов на товары в категории "Одежда":
+models.Client.objects.filter(order__product__category__name='Электроника').exclude(order__product__category__name='Одежда').distinct()
+<QuerySet [<Client: danil>]>
+
+6) Вывести все заказы, которые были сделаны в марте 2023 года
+models.Order.objects.filter(date__year=2023, date__month=3).distinct()
+<QuerySet [<Order: Order object (2)>]>
+
+7) Получить все товары, у которых в названии есть слово "Samsung"
+models.Product.objects.filter(name__icontains='Samsung')
+<QuerySet [<Product: Телефон Samsung Galaxy A52>]>
+
+8) Вывести всех клиентов, которые заказали товар с ценой выше 5000.
+models.Client.objects.filter(order__product__price__gt=5000).distinct()
+<QuerySet [<Client: danil>, <Client: Sergey>]>
+
+9) Вывести всех клиентов, у которых почта @mail.ru.
+models.Client.objects.filter(email__icontains='@mail.ru')
+<QuerySet [<Client: danil>, <Client: Sergey>, <Client: Artem>]>
+
+10) Вывести все товары, у которых цена меньше средней цены всех товаров.
+from django.db.models import Avg
+models.Product.objects.filter(price__lt=models.Product.objects.aggregate(Avg('price'))['price__avg'])
+<QuerySet [<Product: Кроссовки Adidas Ultraboost 21>, <Product: Кеды Vans Old Skool>, <Product: Платье H&M>, <Product: Футболка Levi's>]>
