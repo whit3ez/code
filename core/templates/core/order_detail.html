@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h1>Заказ для {{ order.client }}</h1>
+    <p>Дата: {{ order.date }}</p>
+    <p>Товар:</p>
+    <ul>
+        {% for product in order.product.all %}
+            <li>{{ product.name }} - {{ product.price }}₽</li>
+        {% empty %}
+            <li>В этом заказе товаров не найдено.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

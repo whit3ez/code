@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}HW8{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'core:category_list' %}">Категории товаров</a></li>
+            <li><a href="{% url 'core:product_list' %}">Товары</a></li>
+            <li><a href="{% url 'core:client_list' %}">Клиенты</a></li>
+            <li><a href="{% url 'core:order_list' %}">Заказы</a></li>
+
+        </ul>
+    </nav>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

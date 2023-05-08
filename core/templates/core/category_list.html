@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h1>Категории товаров</h1>
+    <ul>
+        {% for category in categories %}
+            <li><a href="{% url 'core:category_detail' pk=category.pk %}">{{ category.name }}</a></li>
+        {% empty %}
+            <li>Нет доступных категорий.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

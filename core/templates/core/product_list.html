@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h1>Товары</h1>
+    <ul>
+        {% for product in products %}
+            <li><a href="{% url 'core:product_detail' pk=product.pk %}">{{ product.name }}</a></li>
+        {% empty %}
+            <li>Товары не найдены.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
