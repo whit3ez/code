@@ -12,4 +12,7 @@ urlpatterns = [
     path('clients/<int:pk>/', views.ClientDetailView.as_view(), name='client_detail'),
     path('orders/', views.OrderListView.as_view(), name='order_list'),
     path('orders/<int:pk>/', views.OrderDetailView.as_view(), name='order_detail'),
+    path('products/create/', views.ProductCreateView.as_view(), name='product_create'),
+    path('products/update/<int:pk>/', views.ProductUpdateView.as_view(), name='product_update'),
+    path('products/delete/<int:pk>/', views.ProductDeleteView.as_view(), name='product_delete'),
 ]

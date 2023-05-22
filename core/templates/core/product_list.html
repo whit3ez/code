@@ -2,6 +2,10 @@
 
 {% block content %}
     <h1>Товары</h1>
+    <form method="GET" action="">
+        {{ form.as_p }}
+        <button type="submit">Поиск</button>
+    </form>
     <ul>
         {% for product in products %}
             <li><a href="{% url 'core:product_detail' pk=product.pk %}">{{ product.name }}</a></li>

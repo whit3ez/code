@@ -1,6 +1,10 @@
 from django.shortcuts import render,get_object_or_404
 from django.views.generic import ListView, DetailView
 from core import models
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from core.forms import ProductSearchForm
+from django.urls import reverse_lazy
+from django.db.models import Q
 # Create your views here.
 def product_list(request):
     products = models.Product.objects.all()
@@ -73,3 +77,36 @@ class OrderDetailView(DetailView):
     model = models.Order
     template_name = 'core/order_detail.html'
     context_object_name = 'order'
+
+
+class ProductCreateView(CreateView):
+    model = models.Product
+    fields = ['name', 'description', 'price', 'category']
+    template_name = 'core/product_form.html'
+    success_url = reverse_lazy('core:product_list')
+
+class ProductUpdateView(UpdateView):
+    model = models.Product
+    fields = ['name', 'description', 'price', 'category']
+    template_name = 'core/product_update.html'
+    success_url = reverse_lazy('core:product_list')
+
+class ProductDeleteView(DeleteView):
+    model = models.Product
+    template_name = 'core/product_confirm_delete.html'
+    success_url = reverse_lazy('core:product_list')
+
+class ProductListView(FormView):
+    template_name = 'core/product_list.html'
+    form_class = ProductSearchForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        products = models.Product.objects.all()
+        search_query = self.request.GET.get('search_query')
+
+        if search_query:
+            products = products.filter(Q(name__icontains=search_query))
+
+        context['products'] = products
+        return context
