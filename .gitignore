@@ -1,27 +1,23 @@
-# .gitignore for Python Django project
 
-# Python compiled files
 __pycache__/
 *.pyc
 
-# Virtual environment
 venv/
 
-# Django settings file
 settings.py
 
-# Database
 db.sqlite3
 
-# Media and static files
 media/
 static/
 
-# Logs
 logs/
 *.log
 
-# Other
+
 *.swp
 .DS_Store
 .idea/
+
+.coverage
+/htmlcov
