@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 from core import models
-from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from django.views.generic.edit import CreateView,\
+    UpdateView, DeleteView, FormView
 from core.forms import ProductSearchForm
 from django.urls import reverse_lazy
 from django.db.models import Q
@@ -22,7 +23,8 @@ def product_detail(request, pk):
 
 def category_list(request):
     categories = models.ProductCategory.objects.all()
-    return render(request, 'core/category_list.html', {'categories': categories})
+    return render(request, 'core/category_list.html',
+                  {'categories': categories})
 
 
 def category_detail(request, pk):

@@ -21,7 +21,8 @@ class ProductListViewTest(TestCase):
 class ProductDetailViewTest(TestCase):
     def setUp(self):
         self.product = factories.ProductFactory()
-        self.url = reverse('core:product_detail', kwargs={'pk': self.product.pk})
+        self.url = reverse('core:product_detail',
+                           kwargs={'pk': self.product.pk})
 
     def test_product_detail_view(self):
         response = self.client.get(self.url)
