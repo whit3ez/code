@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from core import factories
 
+
 class ProductListViewTest(TestCase):
     def setUp(self):
         self.url = reverse('core:product_list')
@@ -16,6 +17,7 @@ class ProductListViewTest(TestCase):
         response = self.client.get(self.url)
         self.assertEqual(list(response.context['products']), products)
 
+
 class ProductDetailViewTest(TestCase):
     def setUp(self):
         self.product = factories.ProductFactory()
@@ -29,6 +31,7 @@ class ProductDetailViewTest(TestCase):
     def test_product_detail_context(self):
         response = self.client.get(self.url)
         self.assertEqual(response.context['product'], self.product)
+
 
 class ClientListViewTest(TestCase):
     def setUp(self):

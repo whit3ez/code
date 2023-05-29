@@ -1,11 +1,14 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 from core import models
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from core.forms import ProductSearchForm
 from django.urls import reverse_lazy
 from django.db.models import Q
+
+
 # Create your views here.
+
 
 def product_list(request):
     products = models.Product.objects.all()
@@ -45,12 +48,6 @@ def order_list(request):
 def order_detail(request, pk):
     order = get_object_or_404(models.Order, pk=pk)
     return render(request, 'core/order_detail.html', {'order': order})
-
-
-#class ProductListView(ListView):
-#    model = models.Product
-#    template_name = 'core/product_list.html'
-#    context_object_name = 'products'
 
 
 class ProductDetailView(DetailView):
@@ -119,7 +116,6 @@ class ProductListView(FormView):
     template_name = 'core/product_list.html'
     form_class = ProductSearchForm
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         products = models.Product.objects.all()
@@ -130,3 +126,4 @@ class ProductListView(FormView):
 
         context['products'] = products
         return context
+
