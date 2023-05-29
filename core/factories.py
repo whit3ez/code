@@ -5,12 +5,14 @@ from core import models
 
 factory_ru = Factory.create('ru-Ru')
 
+
 class ProductCategoryFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.ProductCategory
 
     name = Sequence(lambda n: f"Category {n}")
     description = factory_ru.text()
+
 
 class ProductFactory(factory.django.DjangoModelFactory):
     class Meta:
@@ -21,6 +23,7 @@ class ProductFactory(factory.django.DjangoModelFactory):
     price = Sequence(lambda n: n * 10)
     category = factory.SubFactory(ProductCategoryFactory)
 
+
 class ClientFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.Client
@@ -28,5 +31,6 @@ class ClientFactory(factory.django.DjangoModelFactory):
     name = factory_ru.name()
     email = factory_ru.email()
     phone = factory_ru.phone_number()
+
 
 
