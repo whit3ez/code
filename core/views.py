@@ -47,10 +47,10 @@ def order_detail(request, pk):
     return render(request, 'core/order_detail.html', {'order': order})
 
 
-class ProductListView(ListView):
-    model = models.Product
-    template_name = 'core/product_list.html'
-    context_object_name = 'products'
+#class ProductListView(ListView):
+#    model = models.Product
+#    template_name = 'core/product_list.html'
+#    context_object_name = 'products'
 
 
 class ProductDetailView(DetailView):
