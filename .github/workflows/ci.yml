@@ -30,7 +30,6 @@ jobs:
       - name: Run flake8
         run: |
           flake8 core
-
   build:
     name: Build and push
     if: github.ref == 'refs/heads/main'
