@@ -45,4 +45,5 @@ class ClientListViewTest(TestCase):
     def test_client_list_context(self):
         clients = factories.ClientFactory.create_batch(3)
         response = self.client.get(self.url)
-        self.assertEqual(list(response.context['clients']), clients)
+        self.assertEqual(list(response.context['clients']),
+                         clients)

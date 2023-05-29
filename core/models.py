@@ -32,4 +32,3 @@ class Order(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     date = models.DateTimeField()
     product = models.ManyToManyField(Product)
-

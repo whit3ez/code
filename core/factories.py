@@ -31,6 +31,3 @@ class ClientFactory(factory.django.DjangoModelFactory):
     name = factory_ru.name()
     email = factory_ru.email()
     phone = factory_ru.phone_number()
-
-
-

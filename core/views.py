@@ -126,4 +126,3 @@ class ProductListView(FormView):
 
         context['products'] = products
         return context
-
